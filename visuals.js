@@ -26,6 +26,14 @@ $(document).ready(function() {
 	})
 });
 
+function createEmptySpace(number) {
+	var string = "";
+	for (var i = 0; i < number; i++) {
+		string += "&nbsp;";
+	}
+	return string;
+}
+
 var showConsole = true;
 var dots;
 function update() {
@@ -35,11 +43,33 @@ function update() {
 		
 		var result = checkCompiles(static, dynamic);
 		
+		var terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p><p>Tanner-Smiths-MacBook-Pro:~ tanner$ _</p>";
 		var explanationh2 = "That works!";
+		var explanation = "<p>Well, everything turned out to be ok. Good job!</p>";
 		if (result < 0) {
 			explanationh2 = "Oh noez! That didn't work...";
 		}
+		
+		if (result == DYN_ABS_INF_ERR) {
+			terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p>";
+			terminal += "<p>Test.java:3: "+dynamic+" is abstract; cannot be instantiated</p>";
+			terminal += "<p>"+createEmptySpace(8)+static+" object = new "+dynamic+"();</p>";
+			terminal += "<p>"+createEmptySpace(18 + static.length)+"^</p>";
+			terminal += "<p>1 error</p>";
+			terminal += "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ _</p>";
+			
+			explanation = "<p>Why didn't this work?</p>";
+			explanation += "<p>Take a look at the error message:</p>";
+			explanation += "<blockquote>\""+dynamic+"\" is abstract; cannot be instantiated\"</blockquote>";
+			explanation += "<p>This means that either "+dynamic+" is either an abstract class or an interface. If we look at the table above, we can see that "+dynamic+" is indeed an ";
+			explanation += (getObjectForName(dynamic).interface ? "interface" : "abstract class") + ".</p>";
+			explanation += "<p>If you remember, interfaces and abstract classes <strong>cannot</strong> be instantiated. This means, that it would be impossible for that statement to run and Java catches that.</p>";
+		}
+		
+		$("#terminal").html(terminal);
 		$("#explanation").find("h2").html(explanationh2);
+		$("#explanation").find("#text").empty();
+		$("#explanation").find("#text").append(explanation);
 		
 		$(".blue-pill").html("Compiling").attr("disabled", "disabled");
 		

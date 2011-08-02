@@ -188,6 +188,16 @@ body {
 	padding: 10px;
 }
 
+#explanation blockquote {
+	margin-left: 10px;
+	border-left: 2px solid #999;
+	padding-left: 10px;
+}
+
+#explanation p {
+	margin: 5px 0px;
+}
+
 /* From https://github.com/ubuwaits/css3-buttons */
 button.blue-pill {
 	position: absolute;
