@@ -1,3 +1,7 @@
+var DYN_ABS_INF_ERR = -1;
+var DYN_IMPL_ERR = -2;
+var HERITAGE_ERR = -3;
+
 function file(abstract, interface, name, parent, implements) {
 	this.abstract = abstract;
 	this.interface = interface;
@@ -8,26 +12,30 @@ function file(abstract, interface, name, parent, implements) {
 
 function checkPolymorphism(static, dynamic) {
 	console.log("Checking polymorphism between "+static.name+" and "+dynamic.name);
+	
+	// The dynamic type is either an abstract class or interface
 	if (dynamic.abstract == true || dynamic.interface == true) {
-		return false;
-	}
-
-	if (static.name == dynamic.name) {
-		return true;
+		return DYN_ABS_INF_ERR;
 	}
 	
-	var parent = dynamic.parent;
-	for (parent = dynamic.parent; parent != null; parent = parent.parent) {
+	// If the dynamic type implements anything, is it the static type?
+	if (dynamic.implements != null && dynamic.implements.name != static.name) {
+		return DYN_IMPL_ERR;
+	}
+	
+	// Is there a common heritage?
+	var parent = dynamic;
+	var matchingHeritage = false;
+	for (parent = dynamic; parent != null; parent = parent.parent) {
 		if (static.name == parent.name) {
-			return true;
+			matchingHeritage = true;
 		}
 	}
-	
-	if (dynamic.implements != null && dynamic.implements.name == static.name) {
-		return true;
+	if (!matchingHeritage) {
+		return HERITAGE_ERR;
 	}
 	
-	return false;
+	return 1;
 }
 
 function getObjectForName(name) {

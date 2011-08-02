@@ -36,7 +36,7 @@ function update() {
 		var result = checkCompiles(static, dynamic);
 		
 		var explanationh2 = "That works!";
-		if (result == false) {
+		if (result < 0) {
 			explanationh2 = "Oh noez! That didn't work...";
 		}
 		$("#explanation").find("h2").html(explanationh2);
