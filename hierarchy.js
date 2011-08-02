@@ -40,7 +40,7 @@ function checkPolymorphism(static, dynamic) {
 
 function getObjectForName(name) {
 	object = new file(false, false, "Object", null, null);
-	animal =  new file(false, true, "Animal", object, null);
+	animal =  new file(true, false, "Animal", object, null);
 	trainable = new file(false, true, "Trainable", null, null);
 	cat = new file(false, false, "Cat", animal, null);
 	corgi = new file(false, false, "Corgi", animal, trainable);
