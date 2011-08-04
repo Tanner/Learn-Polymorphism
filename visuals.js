@@ -43,7 +43,7 @@ function update() {
 		
 		var result = checkCompiles(static, dynamic);
 		
-		var terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p><p>Tanner-Smiths-MacBook-Pro:~ tanner$ _</p>";
+		var terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p><p>Tanner-Smiths-MacBook-Pro:~ tanner$ <span id=\"cursor\">_</span></p>";
 		var explanationh2 = "That works!";
 		var explanation = "<p>Well, everything turned out to be ok. Good job!</p>";
 		if (result < 0) {
@@ -56,7 +56,7 @@ function update() {
 			terminal += "<p>"+createEmptySpace(8)+static+" object = new "+dynamic+"();</p>";
 			terminal += "<p>"+createEmptySpace(18 + static.length)+"^</p>";
 			terminal += "<p>1 error</p>";
-			terminal += "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ _</p>";
+			terminal += "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ <span id=\"cursor\">_</span></p>";
 			
 			explanation = "<p>Why didn't this work?</p>";
 			explanation += "<p>Take a look at the error message:</p>";
@@ -86,4 +86,13 @@ function update() {
 
 function appendCompilingDots() {
 	$(".blue-pill").append(".");
+}
+
+var cursor = window.setInterval("blinkCursor();", 500);
+function blinkCursor() {
+	if ($("#cursor").text() == "_") {
+		$("#cursor").html("");
+	} else {
+		$("#cursor").html("_");
+	}
 }
