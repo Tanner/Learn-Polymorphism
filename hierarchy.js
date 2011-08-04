@@ -18,6 +18,11 @@ function checkPolymorphism(static, dynamic) {
 		return DYN_ABS_INF_ERR;
 	}
 	
+	// If they're the same class, and not a interface/abstract class, then it'll work
+	if (static.name == dynamic.name) {
+		return 1;
+	}
+	
 	// If the dynamic type implements anything, is it the static type?
 	if (dynamic.implements != null && dynamic.implements.name != static.name) {
 		return DYN_IMPL_ERR;
