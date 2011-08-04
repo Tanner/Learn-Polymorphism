@@ -45,7 +45,7 @@ function update() {
 		
 		var terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p><p>Tanner-Smiths-MacBook-Pro:~ tanner$ <span id=\"cursor\">_</span></p>";
 		var explanationh2 = "That works!";
-		var explanation = "<p>Well, everything turned out to be ok. Good job!</p>";
+		var explanation = "<p>Well, everything turned out to be ok. Good job!</p><p id=\"check\">&#10003;</p>";
 		if (result < 0) {
 			explanationh2 = "Oh noez! That didn't work...";
 		}

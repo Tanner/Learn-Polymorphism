@@ -200,6 +200,12 @@ body {
 	margin: 5px 0px;
 }
 
+#check {
+	color: #4BC341;
+	font-size: 130pt;
+	text-align: center;
+}
+
 /* From https://github.com/ubuwaits/css3-buttons */
 button.blue-pill {
 	position: absolute;
