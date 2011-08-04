@@ -21,6 +21,8 @@ function checkPolymorphism(static, dynamic) {
 	// If the dynamic type implements anything, is it the static type?
 	if (dynamic.implements != null && dynamic.implements.name != static.name) {
 		return DYN_IMPL_ERR;
+	} else if (dynamic.implements != null && dynamic.implements.name == static.name) {
+		return 1;
 	}
 	
 	// If the dynamic type doesn't implement anything, is the static-type an interface?
