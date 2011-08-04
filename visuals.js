@@ -66,6 +66,31 @@ function update() {
 			explanation += "<p>If you remember, interfaces and abstract classes <strong>cannot</strong> be instantiated. This means, that it would be impossible for that statement to run and Java catches that.</p>";
 		}
 		
+		if (result == DYN_IMPL_ERR || result == HERITAGE_ERR) {
+			terminal = "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ javac Test.java</p>";
+			terminal += "<p>Test.java:3 incompatible types</p>";
+			terminal += "<p>found	"+createEmptySpace(2)+": "+dynamic+"</p>";
+			terminal += "<p>required: "+static+"</p>";
+			terminal += "<p>"+createEmptySpace(8)+static+" object = new "+dynamic+"();</p>";
+			terminal += "<p>"+createEmptySpace(18 + static.length)+"^</p>";
+			terminal += "<p>1 error</p>";
+			terminal += "<p>Tanner-Smiths-MacBook-Pro:~ tanner$ <span id=\"cursor\">_</span></p>";
+			
+			explanation = "<p>Why didn't this work?</p>";
+			explanation += "<p>Take a look at the error message:</p>";
+			explanation += "<blockquote><p>Test.java:3 incompatible types</p>";
+			explanation += "<p>found	"+createEmptySpace(2)+": "+dynamic+"</p>";
+			explanation += "<p>required: "+static+"</p></blockquote>";
+		}
+		
+		if (result == DYN_IMPL_ERR) {
+			explanation += "<p>We can get this error in two ways - by having the wrong interface for the static type or the wrong class that implements the interface for the dynamic type.</p>";
+		}
+		
+		if (result == HERITAGE_ERR) {
+			explanation += "<p>We get this error because there is no common ancestor between the static and dynamic types or you're trying to put something more general ("+dynamic+") into something more specific ("+static+").</p>"
+		}
+		
 		$("#terminal").html(terminal);
 		$("#explanation").find("h2").html(explanationh2);
 		$("#explanation").find("#text").empty();
