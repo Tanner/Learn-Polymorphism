@@ -23,6 +23,11 @@ function checkPolymorphism(static, dynamic) {
 		return DYN_IMPL_ERR;
 	}
 	
+	// If the dynamic type doesn't implement anything, is the static-type an interface?
+	if (dynamic.implements == null && static.interface == true) {
+		return DYN_IMPL_ERR;
+	}
+	
 	// Is there a common heritage?
 	var parent = dynamic;
 	var matchingHeritage = false;
