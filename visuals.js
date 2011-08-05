@@ -37,7 +37,7 @@ function createEmptySpace(number) {
 var showConsole = true;
 var dots;
 function update() {
-	if (!$("#slide").hasClass("animated")) {
+	if (!$("#declare-instantiation-page").hasClass("animated")) {
 		var static = $("#static-droppable").text();
 		var dynamic = $("#dynamic-droppable").text();
 		
@@ -102,10 +102,10 @@ function update() {
 		setTimeout("$(\".blue-pill\").html(\"Go Back!\").removeAttr(\"disabled\");", 1000);
 		setTimeout("window.clearInterval(dots);", 1000);
 		
-		$("#slide").addClass("animated");
+		$("#declare-instantiation-page").addClass("animated");
 	} else {
 		$(".blue-pill").html("\"Compile\"");
-		$("#slide").removeClass("animated");
+		$("#declare-instantiation-page").removeClass("animated");
 	}
 }
 

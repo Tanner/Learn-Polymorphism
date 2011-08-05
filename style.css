@@ -34,7 +34,7 @@ body {
 	-o-box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
 }
 
-#slide {
+#declare-instantiation-page {
 	-webkit-transition: -webkit-transform 0.5s ease-in-out;
 	-moz-transition: -moz-transform 0.5s ease-in-out;
 	-o-transition: -o-transform 0.5s ease-in-out;
@@ -44,7 +44,7 @@ body {
 	-o-transform: translate(0, 0);
 }
 
-#slide.animated {
+#declare-instantiation-page.animated {
 	-webkit-transition: -webkit-transform 0.5s ease-in-out 0.5s;
 	-moz-transition: -moz-transform 0.5s ease-in-out 0.5s;
 	-o-transition: -o-transform 0.5s ease-in-out 0.5s;
